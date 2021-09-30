@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+
+  <!-- CSS link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rancho&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<style>
+ body{
+  background: linear-gradient(
+            0deg
+            ,rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url("https://i.pinimg.com/originals/7f/22/bd/7f22bd1107b49b5eac20ce21b80d6489.jpg"); 
+    min-height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+ }
+.image-thumbnail{
+    object-fit: cover;
+    min-height: 50vh;
+    max-height: 50vh;
+}
+
+</style>
+
+<body class="m-5">
+  {% load cloudinary %}
+  <div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-black" style="margin-bottom: 5vh;" >
+      <div>
+      <a class="navbar-brand m-2" href="#" style=" font-family: 'Great Vibes', cursive; color: #cf7927; font-size: 5vh;">Gallery Villa</a>
+     </div> 
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon-white"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown" >
+        <ul class="navbar-nav" >
+          <li class="nav-item" >
+            <a class="nav-link" href="{% url 'gallery' %}" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add' %}" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;">Add Photo</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="font-family: 'Rancho', cursive;">
+              {% for category in categories %}
+                  <a class="dropdown-item" href="{% url 'gallery' %}?category={{category.name}}">
+                              {{category.name}}
+                  </a>
+              {% endfor %}
+            </div>
+
+          </li>
+          <a class="nav-link nav-link disabled" href="#" style="font-family: 'Rancho', cursive; color: #585555; font-size: 4vh;">Sign In/Sign Up</a>
+
+        </ul>
+      </div>
+    </nav>
+
+    <div class="row ">
+
+
+      <div class="col-md-12">
+
+        <div class="row">
+       
+          {% for photo in photos %}
+          <div class="col-md-3"  style="font-family: 'Rancho', cursive; color: #cf7927; font-size: 4vh;">
+              <div class="card my-2" style="background-color: #d8d3d3;">
+                <img class="image-thumbnail" src="{{photo.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                  <small>Category: {{photo.category.name}}</small>
+                </div>
+                <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1" style="background-color: #cf7927">View Description</a>
+              </div>
+          </div>
+          {% empty %}
+          <h1>No Photos Found</h1>
+          {% endfor %}
+
+        </div>
+        
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

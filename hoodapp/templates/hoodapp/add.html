@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Photo</title>
+
+  <!-- CSS link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rancho&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  
+
+</head>
+
+<style>
+  body{
+   background: linear-gradient(
+             0deg
+             ,rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url("https://i.pinimg.com/originals/7f/22/bd/7f22bd1107b49b5eac20ce21b80d6489.jpg"); 
+     min-height: 100vh;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     font-family: 'Rancho', cursive;    
+     font-size: 3vh;
+     color: #c5c5c5;
+  }
+
+  .all{
+  background-color:rgba(0,0,0,0.8);
+  display: flex;
+  margin: 50px auto 30px;
+  padding: 0 16px;
+  max-width: 1000px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+
+
+  margin-bottom: 20px;
+  font-family: 'Rancho', cursive;    
+    font-size: 4vh;
+    color: #c5c5c5;
+}
+
+</style>
+<body class="m-5">
+  <div class="container all">
+    <div class="row justify-content-center">
+      <div class="content-section" style="background-color: transparent !important;">
+      
+        <form method="POST" action="" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <div class="form-group m-3">
+            <label>Description</label>
+            <input required name="description" type="text" placeholder="Enter a Description" class="form-control" >
+          </div>
+
+          <div class="form-group m-3">
+            <label>Select a Category</label>
+            <select name="category" class="form-control" >
+              <option value="none">Select a Category...</option>
+              {% for category in categories%}
+              <option value="{{category.id}}">{{category.name}}</option>
+              {% endfor %}
+            </select>
+          </div> 
+
+          <div class="form-group m-3">
+            <label>Create a New Category</label>
+            <input name="category_new" type="text" placeholder="Create a New Category" class="form-control" >
+          </div>
+
+
+          <div class="form-group m-3">
+            <label>Upload Image</label>
+            <input required name="image" type="file" class="form-control-file">
+          </div>
+
+          <button type="submit" class="btn btn-primary m-3" style="background-color: #cf7927; color: #c5c5c5;">Submit</button>
+          <a href="{% url 'gallery' %}" class="btn btn-light" style="background-color: #cf7927; color: #c5c5c5;">Go Back</a>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+  
+</body>
+</html>

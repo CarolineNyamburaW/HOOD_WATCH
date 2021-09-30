@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rancho&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<style>
+  body{
+   background: linear-gradient(
+             0deg
+             ,rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url("https://www.americamakes.us/wp-content/uploads/sites/2/2020/03/bigstock-207574921_mod-scaled.jpg"); 
+     min-height: 100vh;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     font-family: 'Rancho', cursive;    
+     font-size: 3vh;
+     color: #c5c5c5;
+  }
+
+  .all{
+  background-color:rgba(0,0,0,0.8);
+  display: flex;
+  margin: 50px auto 30px;
+  padding: 0 16px;
+  max-width: 1000px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+
+
+  margin-bottom: 20px;
+  font-family: 'Rancho', cursive;    
+    font-size: 4vh;
+    color: #c5c5c5;
+}
+
+</style>
+<body class="m-5">
+
+  <div class="container all">
+    <div class="row justify-content-center">
+      <div class="content-section" style="background-color: transparent !important;">
+        <h1 class="text-center" style="font-family: 'Merienda', cursive; color: #FF0000; font-size: 5vh;">{{user.username}}</h1>
+
+
+      </div>
+
+    </div>
+
+  </div>
+  
+</body>
+</html>

@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('hoodapp.urls')),
     path('register/', v.register, name='register'),
+    path('profile/', v.profile, name='profile'),
     path('', include('django.contrib.auth.urls')),
 ]
 

@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery</title>
+  <title>Hood Watch</title>
 
   <!-- CSS link -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rancho&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 
@@ -18,7 +21,7 @@
  body{
   background: linear-gradient(
             0deg
-            ,rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url("https://i.pinimg.com/originals/7f/22/bd/7f22bd1107b49b5eac20ce21b80d6489.jpg"); 
+            ,rgba(0,0,0,0.8),rgba(0,0,0,0.2)),url("https://www.americamakes.us/wp-content/uploads/sites/2/2020/03/bigstock-207574921_mod-scaled.jpg"); 
     min-height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
@@ -30,6 +33,38 @@
     max-height: 50vh;
 }
 
+.all{
+    position: relative;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    margin: 60px auto 30px;
+    padding: 10vh 10vh;
+    min-height: 50vh;
+    flex-direction: column;
+    align-items: center;
+}
+.heading{
+    font-family: 'Merriweather', serif;
+    font-size: 5rem;
+    color: rgba(251, 251, 251, 0.952);
+    position: relative;
+    /* top: 16rem; */
+    /* text-shadow: 2px 2px 2px solid black; */
+}
+.slogan{
+    animation-delay:0.2s;
+    color: rgba(251, 251, 251, 0.952);
+    position: relative;
+    /* bottom: -18rem; */
+    /* text-shadow: 2px 2px 2px solid black; */
+}
+
+.slogan_text{
+    color: rgba(251, 251, 251, 0.952);
+    font-size: 4vh;
+    font-family: 'Old Standard TT', serif;
+    text-shadow: 2px 2px 2px solid black;
+}
 </style>
 
 <body class="m-5">
@@ -38,7 +73,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-black" style="margin-bottom: 5vh;" >
       <div>
-      <a class="navbar-brand m-2" href="#" style=" font-family: 'Great Vibes', cursive; color: #cf7927; font-size: 5vh;">Hood Watch</a>
+      <a class="navbar-brand m-2" href="#" style=" font-family: 'Great Vibes', cursive; color: #FF0000; font-size: 5vh;">Hood Watch</a>
      </div> 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon-white"></span>
@@ -46,10 +81,10 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown" >
         <ul class="navbar-nav" >
           <li class="nav-item" >
-            <a class="nav-link" href="{% url 'gallery' %}" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;">Gallery</a>
+            <a class="nav-link" href="{% url 'gallery' %}" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'add' %}" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;">Add Photo</a>
+            <a class="nav-link" href="{% url 'add' %}" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;">Post News</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,6 +105,20 @@
       </div>
     </nav>
 
+    <div class="all">
+
+        <div class="heading" >
+            <h1 class="text-center" style=" font-family: 'Great Vibes', cursive; color: #FF0000; font-size: 8vh;">Hood Watch</h1>
+        </div>
+
+        <div class="slogan text-center">
+            <div><p class="slogan_text" style="font-family: 'Merienda', cursive; color: #fff; font-size: 3vh;">Million News, One Apllication, News at your Finger Tips</p></div>
+            <div><p class="slogan_text" style=" font-family: 'Merienda', cursive; color: #fff; font-size: 3vh;">Tell Us What's Happening in Your Hood</p></div>
+            <div><p class="slogan_text" style=" font-family: 'Merienda', cursive; color: #fff; font-size: 3vh;">You know u want to....</p></div>
+
+        </div>
+    </div>
+
     <div class="row ">
 
 
@@ -78,17 +127,20 @@
         <div class="row">
        
           {% for photo in photos %}
-          <div class="col-md-3"  style="font-family: 'Rancho', cursive; color: #cf7927; font-size: 4vh;">
+          <div class="col-md-3"  style="font-family: 'Rancho', cursive; color: #FF0000; font-size: 4vh;">
               <div class="card my-2" style="background-color: #d8d3d3;">
                 <img class="image-thumbnail" src="{{photo.image.url}}" alt="Card image cap">
                 <div class="card-body">
                   <small>Category: {{photo.category.name}}</small>
                 </div>
-                <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1" style="background-color: #cf7927">View Description</a>
+                <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1" style="background-color: #FF0000">View Description</a>
               </div>
           </div>
           {% empty %}
-          <h1>No Photos Found</h1>
+          <div>
+          <h1 style=" font-family: 'Merienda', cursive; color: #fff; font-size: 3vh;">No News For Your Hood???Be the first To Post??</h1>
+          <a href="{% url 'add' %}" class="btn btn-light" style="background-color: #FF0000; color: #000;">Go Back</a>
+          </div>
           {% endfor %}
 
         </div>

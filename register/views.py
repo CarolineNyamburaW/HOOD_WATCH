@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def register(response):
   if response.method == "POST":
@@ -15,6 +17,7 @@ def register(response):
 
   return render(response, "register/register.html", {'form':form})
 
+@login_required
 def profile(request):
-  
+
   return render(request, "register/profile.html")

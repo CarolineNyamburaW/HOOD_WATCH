@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Category, Photo
 
+from hoodapp.models import *
+
 
 # Create your views here.
 

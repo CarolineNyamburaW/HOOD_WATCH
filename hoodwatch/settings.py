@@ -32,7 +32,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = environ.get('DEBUG')
+DEBUG = config('DEBUG')
 
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS')
@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'hoodapp',
+    'register',
     'cloudinary',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -157,6 +159,9 @@ cloudinary.config(
   api_secret = config('api_secret'),
 
 )
+
+LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/"
 
 
 # Default primary key field type

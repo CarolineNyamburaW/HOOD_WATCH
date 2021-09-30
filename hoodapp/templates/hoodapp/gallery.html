@@ -86,9 +86,6 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'add' %}" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;">Post News</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;">Sign In/Sign Up</a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Categories
@@ -100,8 +97,17 @@
                   </a>
               {% endfor %}
             </div>
-
           </li>
+          {% if user.is_authenticated%}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;">Log Out</a>
+          </li>
+          {% else %} 
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}" style="font-family: 'Rancho', cursive; color: #c5c5c5; font-size: 4vh;">Sign In/Sign Up</a>
+          </li>          
+          {% endif %}
+
 
         </ul>
       </div>
@@ -121,7 +127,7 @@
         </div>
     </div>
 
-    <div class="row ">
+    <!-- <div class="row ">
 
 
       <div class="col-md-12">
@@ -146,13 +152,55 @@
           {% endfor %}
 
         </div>
-        
+         
       </div>
 
 
 
-    </div>
-  </div>
+    </div>-->
+
+
+    {% if user.is_authenticated%}
+
+          <div class="row ">
+
+
+              <div class="col-md-12">
+
+                <div class="row">
+              
+                  {% for photo in photos %}
+                  <div class="col-md-3"  style="font-family: 'Rancho', cursive; color: #FF0000; font-size: 4vh;">
+                      <div class="card my-2" style="background-color: #d8d3d3;">
+                        <img class="image-thumbnail" src="{{photo.image.url}}" alt="Card image cap">
+                        <div class="card-body">
+                          <small>Category: {{photo.category.name}}</small>
+                        </div>
+                        <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1" style="background-color: #FF0000">View News Description</a>
+                      </div>
+                  </div>
+                  {% empty %}
+                  <div>
+                  <h1 style=" font-family: 'Merienda', cursive; color: #fff; font-size: 3vh;">No News For Your Hood???Be the first To Post??</h1>
+                  <a href="{% url 'add' %}" class="btn btn-light" style="background-color: #FF0000; color: #000;">Post News</a>
+                  </div>
+                  {% endfor %}
+
+                </div>
+                
+              </div>
+
+
+
+            </div>
+          </div>
+          {% else %} 
+          <div>
+            <h1 style=" font-family: 'Merienda', cursive; color: #fff; font-size: 3vh;">Sign Up to View News from your Hood and Other News</h1>
+            <a href="{% url 'login' %}" class="btn btn-light" style="background-color: #FF0000; color: #000;">Sign Up/Sign In</a>
+            </div>       
+          {% endif %}
+
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

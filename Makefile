@@ -7,7 +7,7 @@ commit:
 	git push 
 
 migrations:
-	python3 manage.py makemigrations
+	python3 manage.py makemigrations ${app}
 
 migrate:
 	python3 manage.py migrate

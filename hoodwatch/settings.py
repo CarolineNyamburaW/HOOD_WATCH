@@ -17,7 +17,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-# import dj_database_url
+import dj_database_url
 
 from decouple import config
 
@@ -96,11 +96,11 @@ DATABASES = {
     }
 }
 
-# PRODUCTION  = environ.get('PRODUCTION')
-# # PRODUCTION = 'False'
+PRODUCTION  = environ.get('PRODUCTION')
+# PRODUCTION = 'False'
 
-# if PRODUCTION == 'True':
-#     DATABASES['default'] = dj_database_url.config()
+if PRODUCTION == 'True':
+    DATABASES['default'] = dj_database_url.config()
 
 
 

@@ -58,12 +58,12 @@
   <div class="container all">
     <div class="row justify-content-center">
       <div class="content-section" style="background-color: transparent !important;">
-        <h1 class="text-center" style="font-family: 'Merienda', cursive; color: #FF0000; font-size: 5vh;">Register With Us Today!</h1>
+        <h1 class="text-center" style="font-family: 'Merienda', cursive; color: #FF0000; font-size: 5vh;">Register With Us Today</h1>
         <form method="POST" class="form-group" >
           {% csrf_token %}
               {{ form|crispy }}
               <p>Already have an account? <a href="/login"> Login Here!</a> </p>
-              <button type="submit" class="btn btn-success" style="background-color:#FF0000;">Register</button>
+              <button type="submit" class="btn btn-success">Register</button>
         </form>
 
       </div>

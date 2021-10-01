@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Photo</title>
+  <title>Post Business</title>
 
   <!-- CSS link -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,7 +57,7 @@
   <div class="container all">
     <div class="row justify-content-center">
       <div class="content-section" style="background-color: transparent !important;">
-        <h1 class="text-center" style="font-family: 'Merienda', cursive; color: #FF0000; font-size: 5vh;">Post News</h1>
+        <h1 class="text-center" style="font-family: 'Merienda', cursive; color: #FF0000; font-size: 5vh;">Post Business</h1>
         {% if user.is_authenticated%}
         <form method="POST" action="" enctype="multipart/form-data">
           {% csrf_token %}

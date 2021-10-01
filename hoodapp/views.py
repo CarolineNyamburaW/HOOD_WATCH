@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Category, Photo
 
+from django.contrib.auth.decorators import login_required
+
+
 from hoodapp.models import *
 
 
@@ -21,6 +24,7 @@ def viewPhoto(request, cn):
   photo = Photo.objects.get(id=cn)
   return render(request, 'hoodapp/photos.html', {'photo':photo})
 
+@login_required
 def addPhoto(request):
   categories = Category.objects.all()
 
@@ -46,3 +50,4 @@ def addPhoto(request):
   photo = Photo.objects.all()
   context = {'categories': categories, 'photo': photo}
   return render(request, 'hoodapp/add.html', context)
+

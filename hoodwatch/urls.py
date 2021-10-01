@@ -25,6 +25,8 @@ urlpatterns = [
     path('', include('hoodapp.urls')),
     path('register/', v.register, name='register'),
     path('profile/', v.profile, name='profile'),
+    path('details/', v.details, name='details'),
+    path('addhood/', v.addHood, name='addhood'),
     path('', include('django.contrib.auth.urls')),
 ]
 

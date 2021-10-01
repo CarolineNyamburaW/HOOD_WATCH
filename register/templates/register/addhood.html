@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log In</title>
+  <title>Add Hood</title>
 
+  <!-- CSS link -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rancho&display=swap" rel="stylesheet">
@@ -41,67 +42,60 @@
 }
 
 .content-section {
-  background: transparent;
+  background: #ffffff;
   padding: 10px 20px;
+
+
   margin-bottom: 20px;
   font-family: 'Rancho', cursive;    
     font-size: 4vh;
     color: #c5c5c5;
 }
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
-}
-
-.account-heading {
-  font-size: 2.5rem;
-}
 
 </style>
 <body class="m-5">
-  {% load crispy_forms_tags %}
   <div class="container all">
     <div class="row justify-content-center">
       <div class="content-section" style="background-color: transparent !important;">
-        <h1 class="text-center" style="font-family: 'Merienda', cursive; color: #FF0000; font-size: 5vh;">My Profile</h1>
-        
-        <div class="content-section">
-              <div class="media">
-                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-                <div class="media-body">
-                  <h2 class="account-heading">{{ user.username }}</h2>
-                  <p class="text-secondary">{{ user.email }}</p>
-                </div>
-              </div>
+        <h1 class="text-center" style="font-family: 'Merienda', cursive; color: #FF0000; font-size: 5vh;">Add Hood</h1>
+        {% if user.is_authenticated%}
+        <form method="POST" action="" enctype="multipart/form-data">
+          {% csrf_token %}
 
-              <!-- <form method="POST" class="form-group" >
-                {% csrf_token %}
-                    {{ u_form|crispy }}
-                    <button type="submit" class="btn btn-success">Update</button>
-                  </form>
+          <div class="form-group m-3">
+            <label>Description</label>
+            <input required name="description" type="text" placeholder="Enter a Description" class="form-control" >
+          </div>
 
-              <form method="POST" class="form-group" >
-                {% csrf_token %}
-                    {{ p_form|crispy }}
-                    <button type="submit" class="btn btn-success">Update</button>
-                  </form> -->
-                  <a href="{% url 'details' %}" class="btn btn-light" style="background-color: #FF0000; color: #c5c5c5;">View My Details</a>
+          <div class="form-group m-3">
+            <label>Select a Hood</label>
+            <select name="hood" class="form-control" >
+              <option value="none">Select a Hood...</option>
+              {% for hood in hoods%}
+              <option value="{{hood.id}}">{{hood.name}}</option>
+              {% endfor %}
+            </select>
+          </div> 
 
-                  
-                  <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">Profile Info</legend>
-                        {{ u_form|crispy }}
-                        {{ p_form|crispy }}
-                    </fieldset>
-                    <div class="form-group">
-                        <button class="btn btn-outline-info" type="submit">Update</button>
-                    </div>
-                </form>
-        </div>
+          <div class="form-group m-3">
+            <label>Create a New Hood</label>
+            <input name="hood_new" type="text" placeholder="Create a New Hood" class="form-control" >
+          </div>
+
+
+          <div class="form-group m-3">
+            <label>Upload Image</label>
+            <input required name="image" type="file" class="form-control-file">
+          </div>
+
+          <button type="submit" class="btn btn-primary m-3" style="background-color: #FF0000; color: #fff;">Submit</button>
+          <a href="{% url 'profile' %}" class="btn btn-light" style="background-color: #FF0000; color: #c5c5c5;">Go Back</a>
+
+        </form>
+
+        {% else %} 
+        <p>Login <a href="{% url 'login' %}">Here!</a> </p> 
+        {% endif %}
 
       </div>
 

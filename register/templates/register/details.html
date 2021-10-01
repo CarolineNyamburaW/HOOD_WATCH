@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Hood</title>
+
+  <!-- CSS link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rancho&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<style>
+ body{
+  background: linear-gradient(
+            0deg
+            ,rgba(0,0,0,0.8),rgba(0,0,0,0.2)),url("https://www.americamakes.us/wp-content/uploads/sites/2/2020/03/bigstock-207574921_mod-scaled.jpg"); 
+    min-height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+ }
+.image-thumbnail{
+    object-fit: cover;
+    min-height: 50vh;
+    max-height: 50vh;
+}
+
+
+</style>
+
+<body class="m-5">
+  {% load cloudinary %}
+  <div class="container">
+
+            {% if user.is_authenticated%}
+
+            <div class="row ">
+
+
+                <div class="col-md-12">
+
+                  <div class="row">
+                
+                    {% for photo in photos %}
+                    <div class="col-md-3"  style="font-family: 'Rancho', cursive; color: #FF0000; font-size: 4vh;">
+                        <div class="card my-2" style="background-color: #d8d3d3;">
+                          <img class="image-thumbnail" src="{{photo.image.url}}" alt="Card image cap">
+                          <div class="card-body">
+                            <small>Category: {{photo.category.name}}</small>
+                          </div>
+                          <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1" style="background-color: #FF0000">View News Description</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div>
+                    <h1 style=" font-family: 'Merienda', cursive; color: #fff; font-size: 3vh;">No Hood Yet?? Add One Here</h1>
+                    <a href="{% url 'addhood' %}" class="btn btn-light" style="background-color: #FF0000; color: #fff;">Add Hood</a>
+                    </div>
+                    {% endfor %}
+
+                  </div>
+
+                </div>
+
+              </div>
+              
+            </div>
+            {% else %} 
+            <div>
+              <h1 style=" font-family: 'Merienda', cursive; color: #fff; font-size: 3vh;">Sign Up to View News from your Hood and Other News</h1>
+              <a href="{% url 'login' %}" class="btn btn-light" style="background-color: #FF0000; color:#fff;">Sign Up/Sign In</a>
+              </div>       
+            {% endif %}
+
+  </div>
+
+
+
+   
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
